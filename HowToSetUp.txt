@@ -1,0 +1,9 @@
+Step 1) Install oh-my-posh. Instructions are on their website
+Step 2) Grab the custom font file in this repo
+Step 3) Grab the custom.omp.json file 
+Step 4) Locate your powershell profile
+Step 5) Place the following in the .ps1 file: 
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\plague.omp.json" | Invoke-Expression
+    Import-Module -Name Terminal-Icons
+
+Step 6) trouble shoot if it doesnt work. ps... the module for the teminal icons may need to be installed first so do that.

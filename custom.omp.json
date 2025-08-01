@@ -1,0 +1,108 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{if .Root}}[Admin] {{end}}{{ .HostName }} \u276f {{ .Folder }}",
+  "blocks": [
+    {
+       
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#1e3999",
+          "background_templates": [
+            "{{ if gt .Code 0 }}#ff0000{{ end }}"
+          ],
+          "foreground": "#ffffff",          
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template":"{{ if gt .Code 0 }}☠️{{ else }}\uf015{{ end }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "session"
+        },
+        {
+          "background": "#1BD760",
+          "foreground": "#434343",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \uf1bc {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
+          "type": "spotify"
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#5c87ff",
+          "template": " \ue5ff {{ .Path }} ",
+          "properties": {
+            "folder_separator_icon": "\u005c",
+            "home_icon": "~",
+            "style": "mixed"
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#193549",
+          "background": "#fff06a",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}",
+            "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+            "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+          ],
+          "template": " {{ .UpstreamIcon }}{{ .RepoName }} {{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+          "properties": {
+            "branch_max_length": 25,
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#4a37b0",
+          "template": " \uF520 {{ .FormattedMs }} ",
+          "properties": {
+          "threshold": 500,
+          "style": "austin",
+          "always_enabled": false
+          }
+        },
+        {
+          "type": "battery",
+          "style": "powerline",
+          "powerline_symbol": "\ue0B0",
+          "foreground": "#efefef",
+          "background": "#005e1b",
+          "background_templates": [
+            "{{ if lt .Percentage 20 }}#ff0000{{ end }}"
+          ],
+          "template": "{{if eq \"Discharging\" .State.String}} {{ if not .Error }}\uf0e7 {{ .Percentage }}{{ end }}\uF295 {{ end }}"
+        },
+        {
+          "background": "#6CA35E",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "type": "node"
+        },       
+        {
+          "background": "#ffff66",
+          "foreground": "#ff0000",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \uf0e7 ",
+          "type": "root"
+        }      
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 2
+}
